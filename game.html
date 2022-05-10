@@ -16,7 +16,7 @@
         <script> //Detta är all kod som faktiskt fixar spelet
             function startGame() {
                myGameArea.start();
-               myGamePiece = new component(50,50,"red", 10, 120)
+               myGamePiece = new component(50,50,"red", 10, 120);
             }
 
             var myGameArea = {
@@ -35,7 +35,7 @@
                 this.y = y;
                 ctx = myGameArea.context;
                 ctx.fillStyle = color;
-                ctx.fillRect(this.width, this.height, this.x, this .y)
+                ctx.fillRect(this.x, this .y, this.width, this.height, );
             }
 
 
