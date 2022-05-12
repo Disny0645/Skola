@@ -59,6 +59,7 @@
             }
 
             document.onkeydown = checkKey;
+            document.onkeyup = checkKeyStop;
 
 
             function checkKey(e) {
@@ -66,48 +67,51 @@
                 e = e || window.event;
 
                 if (e.keyCode == '38') {
-                    myGamePiece.speedX -= 1;
+                    myGamePiece.speedY = -5;
+                    //Up Arrow
                 }
                 else if (e.keyCode == '40') {
-                    // down arrow
-                    console.log("down")
+                    myGamePiece.speedY = 5;
+                    //Down arrow
                 }
                 else if (e.keyCode == '37') {
-                // left arrow
+                    myGamePiece.speedX = -5;
+                    //Left arrow
                 }
                 else if (e.keyCode == '39') {
-                // right arrow
+                    myGamePiece.speedX = 5;
+                    // right arrow
                 }
 
             }
 
-            //function moveUp(){
-                myGamePiece.speedY -= 1;
+            function checkKeyStop(e) {
+
+                e = e || window.event;
+
+                if (e.keyCode == '38') {
+                    myGamePiece.speedY = 0;
+                    //Up Arrow
+                }
+                else if (e.keyCode == '40') {
+                    myGamePiece.speedY = 0;
+                    //Down Arrow
+                }
+                else if (e.keyCode == '37') {
+                    myGamePiece.speedX = 0;
+                    //Left Arrow
+                }
+                else if (e.keyCode == '39') {
+                    myGamePiece.speedX = 0;
+                    //Right Arrow
+                }
+
             }
 
-            //function moveDown(){
-                myGamePiece.speedY += 1;
-            }
 
-            //function moveLeft(){
-                myGamePiece.speedX -= 1;
-            }
-
-            //function moveRight(){
-                myGamePiece.speedX += 1;
-            }
-
-            function stopMove(){
-                myGamePiece.speedX = 0;
-                myGamePiece.speedY = 0;
-            }
 
         </script>
 
-        <button onpointerover="moveUp()" onpointerleave="stopMove()">Up</button>
-        <button onpointerover="moveDown()" onpointerleave="stopMove()">Down</button>
-        <button onpointerover="moveLeft()" onpointerleave="stopMove()">Left</button>
-        <button onpointerover="moveRight()" onpointerleave="stopMove()">Right</button>
 
 
     </body>
