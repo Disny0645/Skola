@@ -12,11 +12,18 @@
     </head>
 
     <body onload="startGame()">
+
+        
         
         <script> //Detta är all kod som faktiskt fixar spelet
+
+            var myGamePiece;
+            var myObstacle;
+
             function startGame() {
                myGameArea.start();
                myGamePiece = new component(50, 50, "red", 10, 120);
+               myObstacle = new component(10, 200, "green", 200, 300);
             }
 
             var myGameArea = {
@@ -30,6 +37,9 @@
                 },
                 clear : function() {
                     this.context.clearRect(0,0, this.canvas.width, this.canvas.height);
+                },
+                stop : function() {
+                    clearInterval(this.interval);
                 }
             }
             function component(width, height, color, x, y) {
@@ -49,13 +59,36 @@
                     this.x += this.speedX;
                     this.y += this.speedY;
                 }
+                this.crashWith = function(otherobj) {
+                    var myleft = this.x;
+                    var myright = this.x + (this.width);
+                    var mytop = this.y;
+                    var mybottom = this.y + (this.height);
+                    var otherleft = otherobj.x;
+                    var otherright = otherobj.x + (otherobj.width);
+                    var othertop = otherobj.y;
+                    var otherbottom = otherobj.y + (otherobj.height);
+                    var crash = true;
+                    if ((mybottom < othertop) ||
+                    (mytop > otherbottom) ||
+                    (myright < otherleft) ||
+                    (myleft > otherright)) {
+                    crash = false;
+                    }
+                    return crash;
+                }
 
             }
 
             function uppdateGameArea(){
+                if (myGamePiece.crashWith(myObstacle)) {
+                    myGameArea.stop();
+                } else {
                 myGameArea.clear();
-                myGamePiece.newPos();
+                myObstacle.uppdate();
+                myGamePiece.newPos();                
                 myGamePiece.uppdate();
+                }
             }
 
             document.onkeydown = checkKey;
