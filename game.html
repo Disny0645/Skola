@@ -23,7 +23,7 @@
             function startGame() {
                myGameArea.start();
                myGamePiece = new component(50, 50, "red", 10, 120);
-               myObstacle = new component(10, 200, "green", 200, 300);
+               myObstacle  = new component(10, 200, "green", 300, 120);
             }
 
             var myGameArea = {
@@ -52,7 +52,7 @@
                 this.uppdate = function(){
                     ctx = myGameArea.context;
                     ctx.fillStyle = color;
-                    ctx.fillRect(this.x, this .y, this.width, this.height);
+                    ctx.fillRect(this.x, this.y, this.width, this.height);
                 }
                 
                 this.newPos = function(){
@@ -85,6 +85,7 @@
                     myGameArea.stop();
                 } else {
                 myGameArea.clear();
+                myObstacle.x -= 1;
                 myObstacle.uppdate();
                 myGamePiece.newPos();                
                 myGamePiece.uppdate();
